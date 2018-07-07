@@ -53,10 +53,7 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 		PropertyValueExample example = new PropertyValueExample();
         example.createCriteria().andPidEqualTo(pid);
         List<PropertyValue> result = pvDao.selectByExample(example);
-        for (PropertyValue pv : result) {
-            Property property = pService.get(pv.getPtid());
-            pv.setProperty(property);
-        }
+        setProperty(result);
         return result;
 	}
 	

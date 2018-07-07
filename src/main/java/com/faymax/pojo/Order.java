@@ -1,11 +1,14 @@
 package com.faymax.pojo;
 
 import java.util.Date;
+import java.util.List;
+
+import com.faymax.service.OrderService;
 
 public class Order {
     private Integer id;
 
-    private String order_code;
+    private String orderCode;
 
     private String address;
 
@@ -15,19 +18,59 @@ public class Order {
 
     private String mobile;
 
-    private String user_message;
+    private String userMessage;
 
-    private Date create_date;
+    private Date createDate;
 
-    private Date pay_date;
+    public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
 
-    private Date delivery_date;
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
 
-    private Date confirm_date;
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
+	public int getTotalNumber() {
+		return totalNumber;
+	}
+
+	public void setTotalNumber(int totalNumber) {
+		this.totalNumber = totalNumber;
+	}
+
+	private Date payDate;
+
+    private Date deliveryDate;
+
+    private Date confirmDate;
 
     private Integer uid;
 
     private String status;
+    
+    private List<OrderItem> orderItems;
+    
+    private User user;
+    
+    private float total;
+    
+    private int totalNumber;
 
     public Integer getId() {
         return id;
@@ -37,12 +80,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getOrder_code() {
-        return order_code;
+    public String getOrderCode() {
+        return orderCode;
     }
 
-    public void setOrder_code(String order_code) {
-        this.order_code = order_code == null ? null : order_code.trim();
+    public void setOrderCode(String order_code) {
+        this.orderCode = order_code == null ? null : order_code.trim();
     }
 
     public String getAddress() {
@@ -77,44 +120,44 @@ public class Order {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public String getUser_message() {
-        return user_message;
+    public String getUserMessage() {
+        return userMessage;
     }
 
-    public void setUser_message(String user_message) {
-        this.user_message = user_message == null ? null : user_message.trim();
+    public void setUserMessage(String user_message) {
+        this.userMessage = user_message == null ? null : user_message.trim();
     }
 
-    public Date getCreate_date() {
-        return create_date;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+    public void setCreateDate(Date create_date) {
+        this.createDate = create_date;
     }
 
-    public Date getPay_date() {
-        return pay_date;
+    public Date getPayDate() {
+        return payDate;
     }
 
-    public void setPay_date(Date pay_date) {
-        this.pay_date = pay_date;
+    public void setPayDate(Date pay_date) {
+        this.payDate = pay_date;
     }
 
-    public Date getDelivery_date() {
-        return delivery_date;
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
-    public void setDelivery_date(Date delivery_date) {
-        this.delivery_date = delivery_date;
+    public void setDeliveryDate(Date delivery_date) {
+        this.deliveryDate = delivery_date;
     }
 
-    public Date getConfirm_date() {
-        return confirm_date;
+    public Date getConfirmDate() {
+        return confirmDate;
     }
 
-    public void setConfirm_date(Date confirm_date) {
-        this.confirm_date = confirm_date;
+    public void setConfirmDate(Date confirm_date) {
+        this.confirmDate = confirm_date;
     }
 
     public Integer getUid() {
@@ -131,5 +174,39 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+    
+    public static void main(String args[]){
+        Order o  = new Order();
+        o.setStatus(OrderService.delete);
+        System.out.println(o.getStatusDesc());
+    }
+    
+    
+    public String getStatusDesc(){
+        String desc ="未知";
+        switch(status){
+            case OrderService.waitPay:
+                desc="待付款";
+                break;
+            case OrderService.waitDelivery:
+                desc="待发货";
+                break;
+            case OrderService.waitConfirm:
+                desc="待收货";
+                break;
+            case OrderService.waitReview:
+                desc="等评价";
+                break;
+            case OrderService.finish:
+                desc="完成";
+                break;
+            case OrderService.delete:
+                desc="刪除";
+                break;
+            default:
+                desc="未知";
+        }
+        return desc;
     }
 }

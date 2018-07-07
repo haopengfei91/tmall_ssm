@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.faymax.dao.OrderMapper">
+<mapper namespace="com.faymax.dao.OrderDao">
   <resultMap id="BaseResultMap" type="com.faymax.pojo.Order">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="order_code" jdbcType="VARCHAR" property="order_code" />
+    <result column="order_code" jdbcType="VARCHAR" property="orderCode" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="post" jdbcType="VARCHAR" property="post" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="user_message" jdbcType="VARCHAR" property="user_message" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="create_date" />
-    <result column="pay_date" jdbcType="TIMESTAMP" property="pay_date" />
-    <result column="delivery_date" jdbcType="TIMESTAMP" property="delivery_date" />
-    <result column="confirm_date" jdbcType="TIMESTAMP" property="confirm_date" />
+    <result column="user_message" jdbcType="VARCHAR" property="userMessage" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="pay_date" jdbcType="TIMESTAMP" property="payDate" />
+    <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate" />
+    <result column="confirm_date" jdbcType="TIMESTAMP" property="confirmDate" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
@@ -80,10 +80,10 @@
       create_date, pay_date, delivery_date, 
       confirm_date, uid, status
       )
-    values (#{order_code,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
-      #{receiver,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{user_message,jdbcType=VARCHAR}, 
-      #{create_date,jdbcType=TIMESTAMP}, #{pay_date,jdbcType=TIMESTAMP}, #{delivery_date,jdbcType=TIMESTAMP}, 
-      #{confirm_date,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+    values (#{orderCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
+      #{receiver,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{userMessage,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{payDate,jdbcType=TIMESTAMP}, #{deliveryDate,jdbcType=TIMESTAMP}, 
+      #{confirmDate,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.faymax.pojo.Order" useGeneratedKeys="true">
@@ -128,7 +128,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="order_code != null">
-        #{order_code,jdbcType=VARCHAR},
+        #{orderCode,jdbcType=VARCHAR},
       </if>
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
@@ -143,19 +143,19 @@
         #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="user_message != null">
-        #{user_message,jdbcType=VARCHAR},
+        #{userMessage,jdbcType=VARCHAR},
       </if>
       <if test="create_date != null">
-        #{create_date,jdbcType=TIMESTAMP},
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
       <if test="pay_date != null">
-        #{pay_date,jdbcType=TIMESTAMP},
+        #{payDate,jdbcType=TIMESTAMP},
       </if>
       <if test="delivery_date != null">
-        #{delivery_date,jdbcType=TIMESTAMP},
+        #{deliveryDate,jdbcType=TIMESTAMP},
       </if>
       <if test="confirm_date != null">
-        #{confirm_date,jdbcType=TIMESTAMP},
+        #{confirmDate,jdbcType=TIMESTAMP},
       </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
@@ -168,8 +168,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.faymax.pojo.Order">
     update order_
     <set>
-      <if test="order_code != null">
-        order_code = #{order_code,jdbcType=VARCHAR},
+      <if test="orderCode != null">
+        order_code = #{orderCode,jdbcType=VARCHAR},
       </if>
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
@@ -183,20 +183,20 @@
       <if test="mobile != null">
         mobile = #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="user_message != null">
-        user_message = #{user_message,jdbcType=VARCHAR},
+      <if test="userMessage != null">
+        user_message = #{userMessage,jdbcType=VARCHAR},
       </if>
-      <if test="create_date != null">
-        create_date = #{create_date,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="pay_date != null">
-        pay_date = #{pay_date,jdbcType=TIMESTAMP},
+      <if test="payDate != null">
+        pay_date = #{payDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="delivery_date != null">
-        delivery_date = #{delivery_date,jdbcType=TIMESTAMP},
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="confirm_date != null">
-        confirm_date = #{confirm_date,jdbcType=TIMESTAMP},
+      <if test="confirmDate != null">
+        confirm_date = #{confirmDate,jdbcType=TIMESTAMP},
       </if>
       <if test="uid != null">
         uid = #{uid,jdbcType=INTEGER},
@@ -209,16 +209,16 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.faymax.pojo.Order">
     update order_
-    set order_code = #{order_code,jdbcType=VARCHAR},
+    set order_code = #{orderCode,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       post = #{post,jdbcType=VARCHAR},
       receiver = #{receiver,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
-      user_message = #{user_message,jdbcType=VARCHAR},
-      create_date = #{create_date,jdbcType=TIMESTAMP},
-      pay_date = #{pay_date,jdbcType=TIMESTAMP},
-      delivery_date = #{delivery_date,jdbcType=TIMESTAMP},
-      confirm_date = #{confirm_date,jdbcType=TIMESTAMP},
+      user_message = #{useMessage,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      pay_date = #{payDate,jdbcType=TIMESTAMP},
+      delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      confirm_date = #{confirmDate,jdbcType=TIMESTAMP},
       uid = #{uid,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

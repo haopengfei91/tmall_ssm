@@ -10,8 +10,18 @@ public class OrderItem {
     private Integer uid;
 
     private Integer number;
+    
+    private Product product;
 
-    public Integer getId() {
+    public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Integer getId() {
         return id;
     }
 

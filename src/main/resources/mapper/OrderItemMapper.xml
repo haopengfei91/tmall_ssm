@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.faymax.dao.OrderItemMapper">
+<mapper namespace="com.faymax.dao.OrderItemDao">
   <resultMap id="BaseResultMap" type="com.faymax.pojo.OrderItem">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
@@ -47,7 +47,7 @@
     </if>
     'false' as QUERYID,
     <include refid="Base_Column_List" />
-    from orderitem
+    from order_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -58,21 +58,21 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from orderitem
+    from order_item
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from orderitem
+    delete from order_item
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.faymax.pojo.OrderItem" useGeneratedKeys="true">
-    insert into orderitem (pid, oid, uid, 
+    insert into order_item (pid, oid, uid, 
       number)
     values (#{pid,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
       #{number,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.faymax.pojo.OrderItem" useGeneratedKeys="true">
-    insert into orderitem
+    insert into order_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pid != null">
         pid,
@@ -103,7 +103,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.faymax.pojo.OrderItem">
-    update orderitem
+    update order_item
     <set>
       <if test="pid != null">
         pid = #{pid,jdbcType=INTEGER},
@@ -121,7 +121,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.faymax.pojo.OrderItem">
-    update orderitem
+    update order_item
     set pid = #{pid,jdbcType=INTEGER},
       oid = #{oid,jdbcType=INTEGER},
       uid = #{uid,jdbcType=INTEGER},
